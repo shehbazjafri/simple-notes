@@ -25,6 +25,7 @@ const CreateButton = styled.button`
 function App(props) {
   const [notes, setNotes] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(null);
+  const [currentNote, setCurrentNote] = useState({ title: "", text: "" });
 
   useEffect(() => {
     const notes = service.getNotes();
@@ -43,6 +44,20 @@ function App(props) {
     props.history.push("/form");
   };
 
+  const onNoteChange = event => {
+    setCurrentNote({ ...currentNote, [event.target.name]: event.target.value });
+  };
+
+  const onNoteSubmit = event => {
+    event.preventDefault();
+    props.history.push("/");
+  };
+
+  const openEditNote = note => {
+    setCurrentNote(note);
+    props.history.push("/form");
+  };
+
   return (
     <div className="App">
       <Route
@@ -54,6 +69,7 @@ function App(props) {
               notes={notes}
               onSelect={onNoteSelect}
               selected={selectedIndex}
+              editNote={openEditNote}
             />
             <CreateButton onClick={openNoteForm}>
               <img src={create} height="50" alt="pen" />
@@ -62,7 +78,17 @@ function App(props) {
         )}
       />
 
-      <Route path="/form" component={Form} />
+      <Route
+        path="/form"
+        render={props => (
+          <Form
+            {...props}
+            onChange={onNoteChange}
+            note={currentNote}
+            onSubmit={onNoteSubmit}
+          />
+        )}
+      />
     </div>
   );
 }
