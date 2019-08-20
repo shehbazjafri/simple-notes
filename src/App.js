@@ -1,8 +1,28 @@
 import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
 import List from "./components/List";
+import Form from "./components/Form";
 import service from "./NoteService";
-function App() {
+import styled from "styled-components";
+import create from "./create.svg";
+
+const CreateButton = styled.button`
+  position: fixed;
+  width: 100px;
+  height: 100px;
+  bottom: 40px;
+  right: 40px;
+  cursor: pointer;
+  background-color: whitesmoke;
+  color: #fff;
+  border-radius: 50px;
+  border: 2px black solid;
+  text-align: center;
+  box-shadow: 2px 2px 3px #999;
+`;
+
+function App(props) {
   const [notes, setNotes] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(null);
 
@@ -19,11 +39,36 @@ function App() {
     }
   };
 
+  const openNoteForm = () => {
+    props.history.push("/form");
+  };
+
   return (
     <div className="App">
-      <List notes={notes} onSelect={onNoteSelect} selected={selectedIndex} />
+      <Route
+        exact
+        path="/"
+        render={props => (
+          <React.Fragment>
+            <List
+              notes={notes}
+              onSelect={onNoteSelect}
+              selected={selectedIndex}
+            />
+            <CreateButton onClick={openNoteForm}>
+              <img src={create} height="50" alt="pen" />
+            </CreateButton>
+          </React.Fragment>
+        )}
+      />
+
+      <Route path="/form" component={Form} />
     </div>
   );
 }
 
-export default App;
+export default () => (
+  <Router>
+    <Route component={App} />
+  </Router>
+);
