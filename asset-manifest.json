@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/simple-notes/static/css/main.1417bbf5.chunk.css",
-    "main.js": "/simple-notes/static/js/main.3c424309.chunk.js",
-    "main.js.map": "/simple-notes/static/js/main.3c424309.chunk.js.map",
+    "main.js": "/simple-notes/static/js/main.517fc806.chunk.js",
+    "main.js.map": "/simple-notes/static/js/main.517fc806.chunk.js.map",
     "runtime~main.js": "/simple-notes/static/js/runtime~main.16c42d7b.js",
     "runtime~main.js.map": "/simple-notes/static/js/runtime~main.16c42d7b.js.map",
     "static/js/2.cd8af363.chunk.js": "/simple-notes/static/js/2.cd8af363.chunk.js",
     "static/js/2.cd8af363.chunk.js.map": "/simple-notes/static/js/2.cd8af363.chunk.js.map",
     "index.html": "/simple-notes/index.html",
-    "precache-manifest.9a543a45dce809e985482769cc55f735.js": "/simple-notes/precache-manifest.9a543a45dce809e985482769cc55f735.js",
+    "precache-manifest.8395f336120b482afba9ef0605dd6160.js": "/simple-notes/precache-manifest.8395f336120b482afba9ef0605dd6160.js",
     "service-worker.js": "/simple-notes/service-worker.js",
     "static/css/main.1417bbf5.chunk.css.map": "/simple-notes/static/css/main.1417bbf5.chunk.css.map",
     "static/media/check.svg": "/simple-notes/static/media/check.235701a7.svg",
