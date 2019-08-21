@@ -25,11 +25,18 @@ const CreateButton = styled.button`
 function App(props) {
   const [notes, setNotes] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(null);
-  const [currentNote, setCurrentNote] = useState({ title: "", text: "" });
+  const [currentNote, setCurrentNote] = useState({
+    title: "",
+    text: ""
+  });
 
-  useEffect(() => {
+  const loadNotes = () => {
     const notes = service.getNotes();
     setNotes(notes);
+  };
+
+  useEffect(() => {
+    loadNotes();
   }, []);
 
   const onNoteSelect = index => {
@@ -50,11 +57,15 @@ function App(props) {
 
   const onNoteSubmit = event => {
     event.preventDefault();
+    service.saveNote(currentNote);
+    setCurrentNote({ title: "", text: "" });
+    loadNotes();
     props.history.push("/");
   };
 
   const openEditNote = note => {
-    setCurrentNote(note);
+    const editNote = { ...note, edit: true };
+    setCurrentNote(editNote);
     props.history.push("/form");
   };
 

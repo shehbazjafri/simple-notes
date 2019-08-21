@@ -1,29 +1,32 @@
 const getNotes = () => {
-  const notes = [
-    {
-      title: "Non nostrud adipisicing eiusmod ut irure est laboris elit.",
-      text:
-        "Non ullamco veniam enim eu. Ex eiusmod tempor cillum dolor velit ad. Amet pariatur irure nulla esse. Consequat esse sunt eu tempor nostrud sit qui ullamco nostrud non pariatur. Tempor excepteur aliquip ex ex mollit ex Lorem commodo elit voluptate. Voluptate dolore commodo deserunt commodo veniam eu consequat voluptate. Officia nulla eiusmod non amet tempor nisi esse incididunt consequat laboris eiusmod voluptate non."
-    },
-    {
-      title: "Non nostrud adipisicing eiusmod ut irure est laboris elit.",
-      text:
-        "Non ullamco veniam enim eu. Ex eiusmod tempor cillum dolor velit ad. Amet pariatur irure nulla esse. Consequat esse sunt eu tempor nostrud sit qui ullamco nostrud non pariatur. Tempor excepteur aliquip ex ex mollit ex Lorem commodo elit voluptate. Voluptate dolore commodo deserunt commodo veniam eu consequat voluptate. Officia nulla eiusmod non amet tempor nisi esse incididunt consequat laboris eiusmod voluptate non."
-    },
-    {
-      title: "Non nostrud adipisicing eiusmod ut irure est laboris elit.",
-      text:
-        "Non ullamco veniam enim eu. Ex eiusmod tempor cillum dolor velit ad. Amet pariatur irure nulla esse. Consequat esse sunt eu tempor nostrud sit qui ullamco nostrud non pariatur. Tempor excepteur aliquip ex ex mollit ex Lorem commodo elit voluptate. Voluptate dolore commodo deserunt commodo veniam eu consequat voluptate. Officia nulla eiusmod non amet tempor nisi esse incididunt consequat laboris eiusmod voluptate non."
-    },
-    {
-      title: "Non nostrud adipisicing eiusmod ut irure est laboris elit.",
-      text:
-        "Non ullamco veniam enim eu. Ex eiusmod tempor cillum dolor velit ad. Amet pariatur irure nulla esse. Consequat esse sunt eu tempor nostrud sit qui ullamco nostrud non pariatur. Tempor excepteur aliquip ex ex mollit ex Lorem commodo elit voluptate. Voluptate dolore commodo deserunt commodo veniam eu consequat voluptate. Officia nulla eiusmod non amet tempor nisi esse incididunt consequat laboris eiusmod voluptate non."
-    }
-  ];
-  return notes;
+  const notes = localStorage.getItem("notes");
+  if (!notes) {
+    return [];
+  }
+  return JSON.parse(notes);
 };
 
-module.exports = {
-  getNotes
+const saveNote = note => {
+  // TODO : Improve this function
+  const notes = getNotes();
+  if (note.edit) {
+    notes.map(curr => {
+      if (curr.id === note.id) {
+        curr.text = note.text;
+        curr.title = note.title;
+        return curr;
+      }
+      return curr;
+    });
+    localStorage.setItem("notes", JSON.stringify([...notes]));
+  } else {
+    const id = "note-" + new Date().getTime();
+    note.id = id;
+    localStorage.setItem("notes", JSON.stringify([...notes, note]));
+  }
+};
+
+export default {
+  getNotes,
+  saveNote
 };
