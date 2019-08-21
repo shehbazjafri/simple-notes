@@ -105,7 +105,7 @@ function App(props) {
 }
 
 export default () => (
-  <Router>
+  <Router basename="/simple-notes">
     <Route component={App} />
   </Router>
 );
