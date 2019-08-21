@@ -2,15 +2,16 @@
 
 This is a notes app made with React.
 
-###Check it out on :
+### Check it out on :
+
 https://shehbazjafri.github.io/simple-notes/
 
-###This project is using :
+### This project is using :
 
 - React with Hooks
 - styled-components
 
-###Run it locally :
+### Run it locally :
 
 #### `npm start` | `yarn start`
 
