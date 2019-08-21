@@ -10,7 +10,7 @@ const ListContainer = styled.ul`
 const ListItem = styled.li``;
 
 export default function List({ notes, onSelect, selected, editNote }) {
-  return (
+  return notes.length > 0 ? (
     <ListContainer>
       {notes.map((note, index) => (
         <ListItem onClick={() => onSelect(index)}>
@@ -23,5 +23,7 @@ export default function List({ notes, onSelect, selected, editNote }) {
         </ListItem>
       ))}
     </ListContainer>
+  ) : (
+    <h1>No Notes Found</h1>
   );
 }
